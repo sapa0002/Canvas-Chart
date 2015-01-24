@@ -1,31 +1,37 @@
-var values = [12, 53, 46, 67.2, 32, 5, 77];
-var total = 0;
+
+var sum = 0;
 var canvas, context;
-for(var i=0; i<values.length; i++){
-  total += values[i];
-}
+var numbers;
 //total is the sum of all the values
 
 document.addEventListener("DOMContentLoaded", function(){
   //set global vars for canvas and context
   canvas = document.querySelector("#myCanvas");
   context = canvas.getContext("2d");
-  
+  $.getJSON('./js/cheese.json', function (data) {
   //add listeners for the buttons
-  addButtonListeners();
+  //addButtonListeners();
   //default action when it first loads
-  //showPie();
-  showNumbers();
+   numbers = data.segments;
+   showPie();
+  //showNumbers();
+console.log(numbers);
+    });
 
+    
 });
 
-
-
 function showPie(){
+    
+    
+ for (var i = 0; i < numbers.length; i++) {
+		sum += numbers[i].value;
+	}
+
   //clear the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
   //set the styles in case others have been set
-  setDefaultStyles();
+  //setDefaultStyles();
   var cx = canvas.width/2;
   var cy = canvas.height/2;
   var radius = 100;
@@ -39,12 +45,20 @@ function showPie(){
   //then draw an arc from the current point along the circumference
   //stopping at the end of the percentage of the circumference
   //finally going back to the center point.
-  for(var i=0; i<values.length; i++){
-    var pct = values[i]/total;
+    
+    var largest = drawLargest(numbers, "value");
+	
+	var smallest = drawSmallet(numbers, "value");
+    
+    console.log(largest,smallest);
+    
+  for(var i=0; i<numbers.length; i++){
+      
+    var pct = numbers[i]/sum;
     //create colour 0 - 16777216 (2 ^ 24) based on the percentage
     var intColour = parseInt(pct * 16777216);
     //console.log(intColour);
-    var red = ((intColour >> 16) & 255);
+    var red = ((intColour >> 16) & 1755);
     var green = ((intColour >> 8) & 255);
     var blue = (intColour & 255);
     //console.log(red, green, blue);
@@ -77,10 +91,31 @@ function showPie(){
     var dx = Math.cos(midAngle) * (radius + 30); //30px beyond radius
     var dy = Math.sin(midAngle) * (radius + 30);
     context.lineTo(dx, dy);
+    context.fillText(numbers[i],dx,dy);
+      
     context.stroke();
     //put the canvas back to the original position
     context.restore();
     //update the currentAngle
     currentAngle = endAngle;
   }
+}
+
+function drawLargest(arr, prop) {
+	var max;
+	for (var i = 0; i < arr.length; i++) {
+		if (!max || parseInt(arr[i][prop]) > parseInt(max[prop]))
+			max = arr[i];
+	}
+	return max;
+}
+
+//Get min from array
+function drawSmallet(arr, prop) {
+	var min;
+	for (var i = 0; i < arr.length; i++) {
+		if (!min || parseInt(arr[i][prop]) < parseInt(min[prop]))
+			min = arr[i];
+	}
+	return min;
 }
