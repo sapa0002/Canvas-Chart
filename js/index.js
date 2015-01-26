@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
   //default action when it first loads
    numbers = data.segments;
    showPie();
+   drawPolar();
   //showNumbers();
 console.log(numbers);
     });
@@ -118,4 +119,53 @@ function drawSmallet(arr, prop) {
 			min = arr[i];
 	}
 	return min;
+}
+
+function drawPolar
+{
+    var polarData = [
+				{
+					value: numbers[0].value,
+					color:numbers[0].color,
+					//highlight: "#FF5A5E",
+					label: numbers[0].label
+				},
+				{
+					value: numbers[1].value,
+					color:numbers[1].color,
+					//highlight: "#FF5A5E",
+					label: numbers[1].label
+				},
+				{
+				value: numbers[2].value,
+					color:numbers[2].color,
+					//highlight: "#FF5A5E",
+					label: numbers[2].label
+				},
+				{
+					value: numbers[3].value,
+					color:numbers[3].color,
+					//highlight: "#FF5A5E",
+					label: numbers[3].label
+				},
+				{
+					value: numbers[4].value,
+					color:numbers[4].color,
+					//highlight: "#FF5A5E",
+					label: numbers[4].label
+				},
+        
+                {
+					value: numbers[5].value,
+					color:numbers[5].color,
+					//highlight: "#FF5A5E",
+					label: numbers[5].label
+				},
+
+			];
+        
+        var ctx = document.getElementById("polarCanvas").getContext("2d");
+				window.myPolarArea = new Chart(ctx).PolarArea(polarData, {
+					responsive:false;
+				});
 }
