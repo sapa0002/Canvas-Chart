@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
    showPie();
    drawPolar();
   //showNumbers();
-console.log(numbers);
+console.log(context);
     });
 
     
@@ -51,7 +51,7 @@ function showPie(){
 	
 	var smallest = drawSmallet(numbers, "value");
     
-    console.log(largest,smallest);
+    console.log(numbers);
     
   for(var i=0; i<numbers.length; i++){
       
@@ -121,7 +121,7 @@ function drawSmallet(arr, prop) {
 	return min;
 }
 
-function drawPolar
+function drawPolar()
 {
     var polarData = [
 				{
@@ -160,12 +160,12 @@ function drawPolar
 					color:numbers[5].color,
 					//highlight: "#FF5A5E",
 					label: numbers[5].label
-				},
+				}
 
 			];
         
         var ctx = document.getElementById("polarCanvas").getContext("2d");
 				window.myPolarArea = new Chart(ctx).PolarArea(polarData, {
-					responsive:false;
+					responsive:false
 				});
 }
