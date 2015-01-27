@@ -102,21 +102,21 @@ function showPie(){
   }
 }
 
-function drawLargest(arr, prop) {
+function drawLargest(arrayValues, attr) {
 	var max;
-	for (var i = 0; i < arr.length; i++) {
-		if (!max || parseInt(arr[i][prop]) > parseInt(max[prop]))
-			max = arr[i];
+	for (var i = 0; i < arrayValues.length; i++) {
+		if (!max || parseInt(arrayValues[i][attr]) > parseInt(max[attr]))
+			max = arrayValues[i];
 	}
 	return max;
 }
 
 //Get min from array
-function drawSmallet(arr, prop) {
+function drawSmallet(arrayValues, attr) {
 	var min;
-	for (var i = 0; i < arr.length; i++) {
-		if (!min || parseInt(arr[i][prop]) < parseInt(min[prop]))
-			min = arr[i];
+	for (var i = 0; i < arrayValues.length; i++) {
+		if (!min || parseInt(arrayValues[i][attr]) < parseInt(min[attr]))
+			min = arrayValues[i];
 	}
 	return min;
 }
