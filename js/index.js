@@ -23,12 +23,12 @@ console.log(context);
 });
 
 function showPie(){
-    
+ console.log("pie chart generated");   
     
  for (var i = 0; i < numbers.length; i++) {
 		sum += numbers[i].value;
 	}
-
+ console.log("sum="+sum);
   //clear the canvas
   context.clearRect(0, 0, canvas.width, canvas.height);
   //set the styles in case others have been set
@@ -51,11 +51,13 @@ function showPie(){
 	
 	var smallest = drawSmallet(numbers, "value");
     
-    console.log(numbers);
+    console.log("hi"+numbers);
     
   for(var i=0; i<numbers.length; i++){
-      
-    var pct = numbers[i]/sum;
+      console.log("i="+i);
+//    console.log(context)  
+    var pct = numbers[i].value/sum;
+      console.log("pct="+pct);
     //create colour 0 - 16777216 (2 ^ 24) based on the percentage
     var intColour = parseInt(pct * 16777216);
     //console.log(intColour);
@@ -64,7 +66,7 @@ function showPie(){
     var blue = (intColour & 255);
     //console.log(red, green, blue);
     var colour = "rgb(" + red +"," + green+"," + blue+")";
-    //console.log(colour);
+    console.log(colour);
     var endAngle = currentAngle + (pct * (Math.PI * 2));
     //draw the arc
     context.moveTo(cx, cy);
